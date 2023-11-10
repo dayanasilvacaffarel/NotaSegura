@@ -25,7 +25,6 @@ public class Role {
     @Column
     private String name;
 
-    @OneToMany(mappedBy = "rol",fetch = FetchType.LAZY)
-    @JsonIgnore
+    @OneToMany(mappedBy = "roles",fetch = FetchType.LAZY)
     private Set<User> users = new HashSet<>();
 }

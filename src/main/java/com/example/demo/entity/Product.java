@@ -51,10 +51,12 @@ public class Product {
     )
     private Set<Policy> policies = new HashSet<>();
 
-    @OneToMany(mappedBy = "product",fetch =FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true )
+    @OneToMany(mappedBy = "products",fetch =FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true )
     private Set<Image> images =new HashSet<>();
 
-    @OneToMany(mappedBy = "product",fetch =FetchType.LAZY)
-    @JsonIgnoreProperties(value = {"producto","usuario"})
+    @OneToMany(mappedBy = "products",fetch =FetchType.LAZY)
     private Set<Reservation> reservations =new HashSet<>();
+
+    @OneToMany(mappedBy = "scores",fetch = FetchType.LAZY)
+    private Set<Score> scores =new HashSet<>();
 }

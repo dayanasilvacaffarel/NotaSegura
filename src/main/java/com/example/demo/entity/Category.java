@@ -32,7 +32,6 @@ public class Category {
     private  String url;
 
     @OneToMany(mappedBy = "categories",fetch = FetchType.LAZY,cascade =CascadeType.ALL)
-    @JsonIgnore
     private Set<Product> products=new HashSet<>();
 
 
