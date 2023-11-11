@@ -1,15 +1,10 @@
 package com.example.demo.entity;
 
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.*;
-import org.antlr.v4.runtime.misc.NotNull;
-import org.springframework.data.annotation.Id;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.LocalTime;
 
 @Getter
 @Setter
@@ -31,10 +26,10 @@ public class Reservation {
     private LocalDateTime endDate;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id_product", referencedColumnName = "id")
-    private Product product;
+    @JoinColumn(name = "product_id", referencedColumnName = "id")
+    private Product products;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id_user",referencedColumnName = "id")
+    @JoinColumn(name = "user_id",referencedColumnName = "id")
     private User user;
 }

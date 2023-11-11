@@ -1,11 +1,8 @@
 package com.example.demo.entity;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import org.antlr.v4.runtime.misc.NotNull;
+import lombok.*;
+
 
 import java.util.HashSet;
 import java.util.Set;
@@ -39,24 +36,26 @@ public class Product {
     @Column
     private String model;
 
-    @ManyToOne (fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "category_id", referencedColumnName = "id")
-    private Category category;
+    private Category categories;
 
     @ManyToMany(cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
     @JoinTable(
             name = "products_policies",
-            joinColumns = @JoinColumn(name = "id_product"),
-            inverseJoinColumns = @JoinColumn(name = "id_policy")
+            joinColumns = @JoinColumn(name = "product_id"),
+            inverseJoinColumns = @JoinColumn(name = "policy_id")
     )
     private Set<Policy> policies = new HashSet<>();
 
-    @OneToMany(mappedBy = "products",fetch =FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true )
-    private Set<Image> images =new HashSet<>();
+    @OneToMany(mappedBy = "products", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private Set<Image> images = new HashSet<>();
 
-    @OneToMany(mappedBy = "products",fetch =FetchType.LAZY)
-    private Set<Reservation> reservations =new HashSet<>();
+    @OneToMany(mappedBy = "products", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private Set<Reservation> reservations = new HashSet<>();
 
-    @OneToMany(mappedBy = "scores",fetch = FetchType.LAZY)
-    private Set<Score> scores =new HashSet<>();
+    @OneToMany(mappedBy = "product", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private Set<Score> scores = new HashSet<>();
+
+
 }

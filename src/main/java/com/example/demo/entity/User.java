@@ -1,9 +1,9 @@
 package com.example.demo.entity;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
+
+import java.util.List;
 
 @Entity
 @Table(name = "users")
@@ -31,6 +31,11 @@ public class User {
     @Column
     private Boolean active;
 
-    @Column
-    private String role;
+    @ManyToOne
+    @JoinColumn(name = "role_id")
+    private Role role;
+
+
+
+
 }
