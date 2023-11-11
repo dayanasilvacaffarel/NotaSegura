@@ -37,7 +37,7 @@ public class Product {
     private String model;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "category_id", referencedColumnName = "id")
+    @JoinColumn(name = "categories", referencedColumnName = "id")
     private Category categories;
 
     @ManyToMany(cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
