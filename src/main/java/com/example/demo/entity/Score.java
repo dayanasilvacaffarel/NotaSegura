@@ -18,7 +18,7 @@ public class Score {
     private double value;
 
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY,cascade = CascadeType.PERSIST)
     @JoinColumn(name = "product_id", referencedColumnName = "id")
     private Product product;
 

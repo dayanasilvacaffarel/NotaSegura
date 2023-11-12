@@ -22,7 +22,7 @@ public class NotaSeguraApplication {
 	public CommandLineRunner demo(JdbcTemplate jdbcTemplate) {
 		return (args) -> {
 
-			System.out.println("Conexión a la base de datos exitosa.");
+			System.out.println("Database connection successful.");
 		};
 	}
 
