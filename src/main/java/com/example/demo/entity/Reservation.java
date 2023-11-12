@@ -27,7 +27,7 @@ public class Reservation {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "product_id", referencedColumnName = "id")
-    private Product products;
+    private Product product;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id",referencedColumnName = "id")

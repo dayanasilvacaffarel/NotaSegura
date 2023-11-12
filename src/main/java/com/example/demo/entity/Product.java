@@ -11,6 +11,7 @@ import java.util.Set;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@ToString
 @Entity
 @Table(name = "products")
 public class Product {
@@ -37,8 +38,8 @@ public class Product {
     private String model;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "categories", referencedColumnName = "id")
-    private Category categories;
+    @JoinColumn(name = "category_id", referencedColumnName = "id")
+    private Category category;
 
     @ManyToMany(cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
     @JoinTable(
@@ -48,14 +49,12 @@ public class Product {
     )
     private Set<Policy> policies = new HashSet<>();
 
-    @OneToMany(mappedBy = "products", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "product", fetch = FetchType.LAZY)
     private Set<Image> images = new HashSet<>();
 
-    @OneToMany(mappedBy = "products", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "product", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Set<Reservation> reservations = new HashSet<>();
 
     @OneToMany(mappedBy = "product", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Set<Score> scores = new HashSet<>();
-
-
 }

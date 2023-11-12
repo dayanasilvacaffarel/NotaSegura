@@ -31,7 +31,7 @@ public class Category {
     @Column
     private  String url;
 
-    @OneToMany(mappedBy = "categories", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "category", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Set<Product> products = new HashSet<>();;
 
 

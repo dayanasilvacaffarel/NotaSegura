@@ -8,7 +8,6 @@ import com.example.demo.exceptions.ResourceNotFoundException;
 import com.example.demo.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
@@ -28,8 +27,8 @@ public class ProductService {
 
 
     public Product addProduct (Product product){
-        Optional<Category> categoriaBuscada = categoryService.findcategoryById(product.getCategories().getId());
-        product.setCategories(categoriaBuscada.get());
+        Optional<Category> categoriaBuscada = categoryService.findcategoryById(product.getCategory().getId());
+        product.setCategory(categoriaBuscada.get());
 
         Set<Policy> policies =  new HashSet<>();
         for (Policy policy : product.getPolicies()){
@@ -46,13 +45,14 @@ public class ProductService {
     public Optional<Product> findProductById(Long id){
         return productRepository.findById(id);
     }
-//    public Optional <List<Product>> findAllByCategory(Long id) {
-//        return productRepository.findAllByCategory(id);
+//    public Optional<List<Product>> findAllByCategory(Long id) {
+//        return productRepository.findAllByCategories_Id(id);
 //    }
+
 
     public Product updateProduct(Product product) throws BadRequetsException{
         Optional<Product> productBuscado = findProductById(product.getId());
-        Optional<Category> categoryBuscada = categoryService.findcategoryById(product.getCategories().getId());
+        Optional<Category> categoryBuscada = categoryService.findcategoryById(product.getCategory().getId());
         if (productBuscado.isPresent() && categoryBuscada.isPresent()){
             return productRepository.save(product);
         }else {
@@ -68,6 +68,5 @@ public class ProductService {
             throw new ResourceNotFoundException("It is not possible delete the Product with the id: "+id);
         }
     }
-
 
 }
