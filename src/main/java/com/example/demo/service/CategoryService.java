@@ -25,12 +25,12 @@ public class CategoryService {
         return categoryRepository.findAll();
     }
 
-    public Optional<Category> findcategoryById(Long id){
+    public Optional<Category> getCategoryById(Long id){
         return categoryRepository.findById(id);
     }
 
     public Category updateCategory(Category category) throws BadRequetsException{
-        Optional<Category> categorySearched = findcategoryById(category.getId());
+        Optional<Category> categorySearched = getCategoryById(category.getId());
         if (categorySearched.isPresent()){
             return categoryRepository.save(category);
         } else {
@@ -39,7 +39,7 @@ public class CategoryService {
     }
 
     public void deletecategory(Long id) throws ResourceNotFoundException{
-        Optional<Category> categorySearched = findcategoryById(id);
+        Optional<Category> categorySearched = getCategoryById(id);
         if (categorySearched.isPresent()){
             categoryRepository.deleteById(id);
         }else {

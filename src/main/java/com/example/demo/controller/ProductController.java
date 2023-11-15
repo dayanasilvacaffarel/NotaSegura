@@ -28,7 +28,8 @@ public class ProductController {
 
     @GetMapping
     public ResponseEntity<List<Product>> getAllProducts() {
-        return ResponseEntity.ok(productService.getAllProducts());
+        List<Product> products = productService.getAllProducts();
+        return ResponseEntity.ok(products);
     }
     @GetMapping("/{id}")
     public ResponseEntity<Product> findProductById(@PathVariable Long id) {

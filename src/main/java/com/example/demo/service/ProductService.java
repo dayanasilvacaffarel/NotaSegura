@@ -7,6 +7,7 @@ import com.example.demo.exceptions.BadRequetsException;
 import com.example.demo.exceptions.ResourceNotFoundException;
 import com.example.demo.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import java.util.HashSet;
 import java.util.List;
@@ -27,7 +28,7 @@ public class ProductService {
 
 
     public Product addProduct (Product product){
-        Optional<Category> categoriaBuscada = categoryService.findcategoryById(product.getCategory().getId());
+        Optional<Category> categoriaBuscada = categoryService.getCategoryById(product.getCategory().getId());
         product.setCategory(categoriaBuscada.get());
 
         Set<Policy> policies =  new HashSet<>();
@@ -39,20 +40,20 @@ public class ProductService {
         return productRepository.save(product);
     }
 
-    public List<Product> getAllProducts(){
+    public List<Product> getAllProducts() {
         return productRepository.findAll();
     }
     public Optional<Product> findProductById(Long id){
         return productRepository.findById(id);
     }
 //    public Optional<List<Product>> findAllByCategory(Long id) {
-//        return productRepository.findAllByCategories_Id(id);
+//        return productRepository.findAllByCategory_Id(id);
 //    }
 
 
     public Product updateProduct(Product product) throws BadRequetsException{
         Optional<Product> productBuscado = findProductById(product.getId());
-        Optional<Category> categoryBuscada = categoryService.findcategoryById(product.getCategory().getId());
+        Optional<Category> categoryBuscada = categoryService.getCategoryById(product.getCategory().getId());
         if (productBuscado.isPresent() && categoryBuscada.isPresent()){
             return productRepository.save(product);
         }else {

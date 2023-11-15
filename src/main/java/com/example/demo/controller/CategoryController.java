@@ -5,11 +5,13 @@ import com.example.demo.entity.Category;
 import com.example.demo.exceptions.BadRequetsException;
 import com.example.demo.exceptions.ResourceNotFoundException;
 import com.example.demo.service.CategoryService;
+import org.aspectj.apache.bcel.classfile.Module;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/categories")
@@ -23,6 +25,15 @@ public class CategoryController {
         return ResponseEntity.ok(categoryService.getAllCategories());
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<Category> getCategoryById(@PathVariable Long id){
+        Optional<Category> categoriaBuscada = categoryService.getCategoryById(id);
+        if (categoriaBuscada.isPresent()){
+            return ResponseEntity.ok(categoriaBuscada.get());
+        }else {
+            return ResponseEntity.notFound().build();
+        }
+    }
 
     @PostMapping
     public ResponseEntity<Category> addCategory(@RequestBody Category category){
