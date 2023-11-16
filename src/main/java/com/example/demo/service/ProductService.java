@@ -39,13 +39,12 @@ public class ProductService {
     }
 
     public List<Product> getAllProducts() {
-        List<Product> productFound = productRepository.findAll();
-        List<Product> products = new ArrayList<>();
-        for (Product product: productFound){
-            products.add(product);
-        }
-        return products;
-
+//        List<Product> productFound = productRepository.findAll();
+//        List<Product> products = new ArrayList<>();
+//        for (Product product : productFound) {
+//            products.add(product);
+//        }
+        return productRepository.findAll();
     }
     public Optional<Product> findProductById(Long id){
         return productRepository.findById(id);
