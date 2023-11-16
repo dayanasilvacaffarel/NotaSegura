@@ -24,6 +24,6 @@ public class Role {
     private String name;
 
     @OneToMany(mappedBy = "role")
-    private List<User> users;
+    private Set<AppUser> users = new HashSet<>();
 
 }

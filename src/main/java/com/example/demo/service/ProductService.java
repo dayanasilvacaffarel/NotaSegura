@@ -9,10 +9,8 @@ import com.example.demo.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Optional;
-import java.util.Set;
+
+import java.util.*;
 
 @Service
 public class ProductService {
@@ -41,7 +39,13 @@ public class ProductService {
     }
 
     public List<Product> getAllProducts() {
-        return productRepository.findAll();
+        List<Product> productFound = productRepository.findAll();
+        List<Product> products = new ArrayList<>();
+        for (Product product: productFound){
+            products.add(product);
+        }
+        return products;
+
     }
     public Optional<Product> findProductById(Long id){
         return productRepository.findById(id);
