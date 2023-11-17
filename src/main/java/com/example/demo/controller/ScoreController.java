@@ -2,15 +2,11 @@ package com.example.demo.controller;
 
 
 import com.example.demo.entity.Score;
-import com.example.demo.exceptions.BadRequetsException;
+import com.example.demo.exceptions.BadRequestException;
 import com.example.demo.service.ScoreService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/scores")
@@ -30,7 +26,7 @@ public class ScoreController {
     }
 
     @PutMapping
-    public ResponseEntity<Score> updateScore(@RequestBody Score puntuacion) throws BadRequetsException {
+    public ResponseEntity<Score> updateScore(@RequestBody Score puntuacion) throws BadRequestException {
         Score puntuacionEditada=scoreService.editarPuntuacion(puntuacion);
         return ResponseEntity.ok(puntuacionEditada);
     }

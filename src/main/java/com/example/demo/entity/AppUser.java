@@ -43,7 +43,7 @@ public class AppUser {
     @JsonIgnoreProperties(value = {"user"})
     private Set<Reservation> reservations = new HashSet<>();
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "roles", referencedColumnName = "id")
     private Role role;
 

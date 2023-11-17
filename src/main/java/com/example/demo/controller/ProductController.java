@@ -2,7 +2,7 @@ package com.example.demo.controller;
 
 
 import com.example.demo.entity.Product;
-import com.example.demo.exceptions.BadRequetsException;
+import com.example.demo.exceptions.BadRequestException;
 import com.example.demo.exceptions.ResourceNotFoundException;
 import com.example.demo.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,9 +43,9 @@ public class ProductController {
 //        return productosBuscados.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
 //    }
     @PutMapping
-    public ResponseEntity<Product> updateProduct(@RequestBody Product product) throws BadRequetsException {
-        Product productoEditado=productService.updateProduct(product);
-        return ResponseEntity.ok(productoEditado);
+    public ResponseEntity<Product> updateProduct(@RequestBody Product product) throws BadRequestException {
+        Product editedProduct=productService.updateProduct(product);
+        return ResponseEntity.ok(editedProduct);
     }
     @DeleteMapping("{id}")
     public ResponseEntity<String> deletePdoductById(@PathVariable Long id) throws ResourceNotFoundException{

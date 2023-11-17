@@ -2,10 +2,9 @@ package com.example.demo.controller;
 
 
 import com.example.demo.entity.Category;
-import com.example.demo.exceptions.BadRequetsException;
+import com.example.demo.exceptions.BadRequestException;
 import com.example.demo.exceptions.ResourceNotFoundException;
 import com.example.demo.service.CategoryService;
-import org.aspectj.apache.bcel.classfile.Module;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -40,7 +39,7 @@ public class CategoryController {
         return ResponseEntity.ok(categoryService.addCategory(category));
     }
     @PutMapping("/{id}")
-    public ResponseEntity<Category> updateCategory(@RequestBody Category category) throws BadRequetsException {
+    public ResponseEntity<Category> updateCategory(@RequestBody Category category) throws BadRequestException {
         Category categoryUpdated=categoryService.updateCategory(category);
         return ResponseEntity.ok(categoryUpdated);
     }

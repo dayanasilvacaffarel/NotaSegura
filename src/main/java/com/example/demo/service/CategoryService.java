@@ -1,7 +1,7 @@
 package com.example.demo.service;
 
 import com.example.demo.entity.Category;
-import com.example.demo.exceptions.BadRequetsException;
+import com.example.demo.exceptions.BadRequestException;
 import com.example.demo.exceptions.ResourceNotFoundException;
 import com.example.demo.repository.CategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,12 +29,12 @@ public class CategoryService {
         return categoryRepository.findById(id);
     }
 
-    public Category updateCategory(Category category) throws BadRequetsException{
+    public Category updateCategory(Category category) throws BadRequestException{
         Optional<Category> categorySearched = getCategoryById(category.getId());
         if (categorySearched.isPresent()){
             return categoryRepository.save(category);
         } else {
-            throw  new BadRequetsException("Could not update category with id: " +category.getId()+ " and name" + category.getName());
+            throw  new BadRequestException("Could not update category with id: " +category.getId()+ " and name" + category.getName());
         }
     }
 

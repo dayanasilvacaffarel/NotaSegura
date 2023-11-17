@@ -3,11 +3,10 @@ package com.example.demo.service;
 import com.example.demo.entity.Category;
 import com.example.demo.entity.Policy;
 import com.example.demo.entity.Product;
-import com.example.demo.exceptions.BadRequetsException;
+import com.example.demo.exceptions.BadRequestException;
 import com.example.demo.exceptions.ResourceNotFoundException;
 import com.example.demo.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
@@ -54,13 +53,13 @@ public class ProductService {
 //    }
 
 
-    public Product updateProduct(Product product) throws BadRequetsException{
-        Optional<Product> productBuscado = findProductById(product.getId());
-        Optional<Category> categoryBuscada = categoryService.getCategoryById(product.getCategory().getId());
-        if (productBuscado.isPresent() && categoryBuscada.isPresent()){
+    public Product updateProduct(Product product) throws BadRequestException {
+        Optional<Product> productSearched = findProductById(product.getId());
+        Optional<Category> categorySearched = categoryService.getCategoryById(product.getCategory().getId());
+        if (productSearched.isPresent() && categorySearched.isPresent()){
             return productRepository.save(product);
         }else {
-            throw new BadRequetsException("It is not possible to update the Product with the id: "+product.getId()+ "because the necessary data to make the request is not found.");
+            throw new BadRequestException("It is not possible to update the Product with the id: "+product.getId()+ "because the necessary data to make the request is not found.");
         }
     }
 

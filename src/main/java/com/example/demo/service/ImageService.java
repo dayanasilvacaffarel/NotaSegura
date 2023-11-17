@@ -2,7 +2,7 @@ package com.example.demo.service;
 
 import com.example.demo.entity.Image;
 import com.example.demo.entity.Product;
-import com.example.demo.exceptions.BadRequetsException;
+import com.example.demo.exceptions.BadRequestException;
 import com.example.demo.exceptions.ResourceNotFoundException;
 import com.example.demo.repository.ImageRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,23 +34,23 @@ public class ImageService {
     public Optional<Image> findById(Long id){
         return imageRepository.findById(id);
     }
-    public Image updateImage(Image image)throws BadRequetsException {
+    public Image updateImage(Image image)throws BadRequestException {
         Optional<Image> imagenBuscada = findById(image.getId());
         if (imagenBuscada.isPresent()){
             return imageRepository.save(image);
         }
         else {
-            throw new BadRequetsException("No se pudo actualizar la imagen con id : "+image.getId());
+            throw new BadRequestException("Could not update image with id : "+image.getId());
         }
 
     }
 
     public void deleteImage(Long id) throws ResourceNotFoundException {
-        Optional<Image> imagenBuscada = findById(id);
-        if (imagenBuscada.isPresent()){
+        Optional<Image> foundImage= findById(id);
+        if (foundImage.isPresent()){
             imageRepository.deleteById(id);
         }else{
-            throw new ResourceNotFoundException("No existe la imagen con id : "+id+" no se puede borrar");
+            throw new ResourceNotFoundException("The image with the id: " + id + "does NOT exist");
         }
 
     }

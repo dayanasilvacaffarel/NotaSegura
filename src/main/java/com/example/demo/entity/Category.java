@@ -29,7 +29,9 @@ public class Category {
     @Column
     private  String url;
 
+
     @OneToMany(mappedBy = "category", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JsonIgnore
     private Set<Product> products = new HashSet<>();;
 
 }

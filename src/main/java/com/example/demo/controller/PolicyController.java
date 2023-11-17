@@ -1,7 +1,7 @@
 package com.example.demo.controller;
 
 import com.example.demo.entity.Policy;
-import com.example.demo.exceptions.BadRequetsException;
+import com.example.demo.exceptions.BadRequestException;
 import com.example.demo.exceptions.ResourceNotFoundException;
 import com.example.demo.service.PolicyService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,7 +35,7 @@ public class PolicyController {
         return ResponseEntity.ok(policyService.addPolicy(policy));
     }
     @PutMapping
-    public ResponseEntity<Policy> editarPolitica(@RequestBody Policy policy) throws BadRequetsException {
+    public ResponseEntity<Policy> editarPolitica(@RequestBody Policy policy) throws BadRequestException {
         Policy politicaeditada=policyService.updatePolicy(policy);
         return ResponseEntity.ok(politicaeditada);
     }

@@ -32,7 +32,7 @@ public class Policy {
     @Column
     private String description;
 
-
+    @JsonIgnore
     @ManyToMany(mappedBy = "policies",fetch = FetchType.LAZY)
     private Set<Product> products = new HashSet<>();
 

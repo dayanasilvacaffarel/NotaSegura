@@ -1,6 +1,7 @@
 package com.example.demo.entity;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.*;
 @Getter
@@ -18,12 +19,13 @@ public class Score {
     private double value;
 
 
+    @JsonIgnoreProperties(value = {"hibernateLazyInitializer", "handler","name","description","active","price","brand","model","category","policies","images","reservations","scores"})
     @ManyToOne(fetch = FetchType.LAZY,cascade = CascadeType.PERSIST)
     @JoinColumn(name = "product_id", referencedColumnName = "id")
     private Product product;
 
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id", referencedColumnName = "id", nullable = true)
+    @JsonIgnoreProperties(value = {"name","lastName","email","password","active","address","reservations","role","scores","hibernateLazyInitializer","handler"})
+    @ManyToOne(fetch = FetchType.LAZY,cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "user_id", referencedColumnName = "id")
     private AppUser user;
 }

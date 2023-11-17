@@ -1,6 +1,7 @@
 package com.example.demo.entity;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -25,12 +26,15 @@ public class Reservation {
     @Column(name="end_date")
     private LocalDateTime endDate;
 
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "product_id", referencedColumnName = "id")
+    @JsonIgnoreProperties(value = {"hibernateLazyInitializer", "handler","name","description","active","price","brand","model","category","policies","images","reservations","scores"})
     private Product product;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id", referencedColumnName = "id")
+    @JsonIgnoreProperties(value = {"name","lastName","email","password","active","address","reservations","role","scores","hibernateLazyInitializer","handler"})
     private AppUser user;
 
     @Column

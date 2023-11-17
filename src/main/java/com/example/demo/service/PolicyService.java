@@ -1,7 +1,7 @@
 package com.example.demo.service;
 
 import com.example.demo.entity.Policy;
-import com.example.demo.exceptions.BadRequetsException;
+import com.example.demo.exceptions.BadRequestException;
 import com.example.demo.exceptions.ResourceNotFoundException;
 import com.example.demo.repository.PolicyRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,13 +27,13 @@ public class PolicyService {
     public Optional<Policy> findPolicyById(Long id){
         return policyRepository.findById(id);
     }
-    public Policy updatePolicy(Policy policy)throws BadRequetsException {
+    public Policy updatePolicy(Policy policy)throws BadRequestException {
         Optional<Policy> politicaBuscada = findPolicyById(policy.getId());
         if (politicaBuscada.isPresent()){
             return policyRepository.save(policy);
         }
         else {
-            throw new BadRequetsException("Could not update policy with id : "+policy.getId());
+            throw new BadRequestException("Could not update policy with id : "+policy.getId());
         }
 
     }
