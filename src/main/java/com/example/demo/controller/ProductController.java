@@ -37,11 +37,11 @@ public class ProductController {
         return productoBuscado.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.status(HttpStatus.NOT_FOUND).build());
     }
 
-//    @GetMapping("/categories/{id}")
-//    public ResponseEntity<List<Product>> findAllByCategory(@PathVariable Long id) {
-//        Optional<List<Product>> productosBuscados = productService.findAllByCategory(id);
-//        return productosBuscados.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
-//    }
+    @GetMapping("/categories/{id}")
+    public ResponseEntity<List<Product>> findAllByCategory(@PathVariable Long id) {
+        Optional<List<Product>> productosBuscados = productService.findAllByCategory(id);
+        return productosBuscados.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
+    }
     @PutMapping
     public ResponseEntity<Product> updateProduct(@RequestBody Product product) throws BadRequestException {
         Product editedProduct=productService.updateProduct(product);

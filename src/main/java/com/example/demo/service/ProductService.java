@@ -48,9 +48,9 @@ public class ProductService {
     public Optional<Product> findProductById(Long id){
         return productRepository.findById(id);
     }
-//    public Optional<List<Product>> findAllByCategory(Long id) {
-//        return productRepository.findAllByCategory_Id(id);
-//    }
+    public Optional<List<Product>> findAllByCategory(Long id) {
+        return productRepository.findAllByCategory_Id(id);
+    }
 
 
     public Product updateProduct(Product product) throws BadRequestException {
