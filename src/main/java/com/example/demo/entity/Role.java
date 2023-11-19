@@ -2,7 +2,7 @@ package com.example.demo.entity;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import jakarta.persistence.*;
+import javax.persistence.*;
 import lombok.*;
 
 import java.util.HashSet;
@@ -24,8 +24,8 @@ public class Role {
     @Column
     private String name;
 
-    @OneToMany(mappedBy = "role",fetch = FetchType.LAZY)
-    @JsonIgnore
-    private Set<AppUser> users = new HashSet<>();
+//    @OneToMany(mappedBy = "role",fetch = FetchType.LAZY)
+//    @JsonIgnore
+//    private Set<AppUser> users = new HashSet<>();
 
 }

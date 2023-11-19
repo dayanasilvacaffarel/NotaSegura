@@ -21,7 +21,7 @@ public class ScoreService {
     ProductService productService;
 
     @Autowired
-    UserService usuarioService;
+    AppUserService usuarioService;
 
     public Optional<Score> findScoreById(Long id){
         return scoreRepository.findById(id);
